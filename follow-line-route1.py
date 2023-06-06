@@ -41,6 +41,35 @@ def turn_left_90():
     pwm.ChangeDutyCycle(DC_CENTER)
     time.sleep(1)
 
+def turn_right_90():
+    kit.motor1.throttle = THROTTLE_STOP
+    pwm.ChangeDutyCycle(DC_RIGHT)
+    time.sleep(0.85)
+    kit.motor1.throttle = THROTTLE_SLOW
+    pwm.ChangeDutyCycle(DC_CENTER)
+    time.sleep(1)
+
+def move_forward():
+    kit.motor1.throttle = THROTTLE_SLOW
+    time.sleep(1)
+    kit.motor1.throttle = THROTTLE_STOP
+    
+def turn_left_45():
+    kit.motor1.throttle = THROTTLE_STOP
+    pwm.ChangeDutyCycle(DC_LEFT)
+    time.sleep(0.425)
+    kit.motor1.throttle = THROTTLE_SLOW
+    pwm.ChangeDutyCycle(DC_CENTER)
+    time.sleep(1.415)
+    
+def turn_right_45():
+    kit.motor1.throttle = THROTTLE_STOP
+    pwm.ChangeDutyCycle(DC_RIGHT)
+    time.sleep(0.425)
+    kit.motor1.throttle = THROTTLE_SLOW
+    pwm.ChangeDutyCycle(DC_CENTER)
+    time.sleep(1.415)
+
 signal.signal(signal.SIGINT, signal_handler)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(PIN_FRONT_MOTOR, GPIO.OUT)
@@ -93,6 +122,5 @@ while True:
     next_duty_cycle = dc
     pwm.ChangeDutyCycle(next_duty_cycle)
     
-    # 檢查是否需要進行左轉
-    if some_condition:
-        turn_left_90()
+#     if some_condition:
+    turn_left_90()
